@@ -1,0 +1,437 @@
+/*body{
+	
+}*/
+
+/************************************************* TAGS **************************************************/
+html, h2, h3{
+	font-family: 'Roboto', 'Noto', sans-serif;
+}
+a{
+	text-decoration: none;
+	color: rgb(246,246,246);
+}
+body{
+	font-family: "segoe ui";
+	background-color: rgb(243,243,243);
+	margin: 0 !important;
+	padding: 0 !important;
+	/*padding-top: 0px !important;*/
+	/*padding-bottom: 0px !important;*/
+}
+
+/************************************************* ID **************************************************/
+
+#body{
+	margin-top: 8px;
+	width: 98%;
+	height: 550px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#button-group{
+	width: 55%;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#controlsToggle {
+    position: absolute;
+    left: 8%;
+    bottom: -7.5%;
+/*    background: #4285f4;
+    color: rgb(248,248,248);*/
+}
+#footer{
+	margin-top: 7px;
+}
+#footer paper-toolbar{
+	background-color: #FF5722;
+}
+
+#footer-content{
+	font-size: 18px;
+	width: 86.6%;
+	margin-right: auto;
+	margin-left: auto;
+	/*margin-left: 80px !important;*/
+	margin-top: 75px !important;
+}
+
+#footer-copyright{
+	font-size: 13px;
+	margin-top: -13px;
+	width: 48%;
+}
+
+/*#footer-icons{
+	width: 50%;
+	float: left;
+	height: auto;
+}*/
+
+#footer-links{
+	font-weight: bold;
+	margin-top: 25px;
+	width: 60%;
+	float: left;
+}
+#footer-links a{
+	margin-top: 20px !important;
+}
+#footer-margin{
+	  height: 6px;
+	  top: -6px;
+	  /*margin-top: 74px;*/
+	  box-shadow: inset 0px -5px 6px -3px rgba(0, 0, 0, 0.4)
+}
+#header-tab{
+	margin-left: 60%;
+}
+#login{
+	margin-left: 63%;
+}
+
+#login-form{
+	/*position: relative;*/
+	width: 100%;	
+	/*margin-top: 50px;	*/
+	background-color: #fff !important;
+}
+#register-form{
+	position: absolute;
+	left: 100%;
+	width: 100%;	
+	/*margin-top: 50px;	*/
+	background-color: #fff !important;
+}
+#register-form form{
+
+	width: 46.7%;
+	margin: 20px;
+	float: left !important;
+	padding-top:40px; 
+	/*padding-bottom: 20px;*/
+}
+#register-form .col{
+	float: none;
+
+}
+#register-form .terms{
+	width: 46.7%;
+	height: 100px;
+	margin: 20px;
+	float: left !important;
+	padding: 0 0.75rem;
+}
+
+
+#main{
+	width: 99%;
+	margin-right: auto;
+	margin-left: auto;
+	height: 500px;
+}
+
+#paper-toolbar-header{
+	background-color: #FF5722;
+}
+#paper-toolbar-extension{
+	background-color: #FFFFFF !important;
+	height: 40px;
+}
+
+#paper-header{
+	/*position: fixed;*/
+/*	-webkit-box-shadow: 0px -8px 18px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px -8px 18px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px -8px 18px 0px rgba(0,0,0,0.3);*/
+	z-index: 999;
+	width: 100%;
+}
+/************************************************* CLASSES ************************************************/
+.adjust-form{
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.body-material{
+	width: 32.33%;
+	float: left;
+	margin-top: 20px;
+	margin-left:6px;
+	margin-right: 6px;
+}
+
+.center{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.terms-content{
+	font-size: 16px;
+	text-align: justify;
+}
+
+.header-log{
+	width: 70px !important;
+}
+.header-log a{
+	font-size: 16px;
+	color: #fff;
+}
+
+.hundred{
+	width: 100%;
+}
+.login-text{
+	margin-top: 10px;
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+	width: 44%;
+}
+.material-footer{
+	background-color: #FF5722 !important;
+}
+
+.paper-material-groups{
+	width: 100%;
+	height: 400px;
+	background-color: rgb(252,252,252);
+}
+
+.scrollfire{
+	opacity: 0;
+}
+
+.yeah{
+    background: #FF5722;
+    color: white;
+    width: 234px;
+    float: left;
+}
+.yeah::shadow paper-ripple{
+	color: blue;
+}
+
+/************************************************* POLYMER ************************************************/
+
+paper-header-panel {
+    @apply(--shadow-elevation-2dp);
+}
+
+paper-tabs{
+	margin-top: 14px;
+}	
+paper-toolbar #header{
+	z-index: 9999;
+	margin-top: 4%;
+	width: 17%;
+	margin-left: 10%;
+	font-size: 32px;
+}
+paper-toolbar #header img{
+	width: 100%;
+}
+/*paper-fab{
+	float: right !important;
+	margin-left: 6px !important;
+	margin-top: 20px;
+
+}*/
+/************************************************* FOOTER **************************************************/
+
+.footer-distributed{
+	background-color: #FF5722;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	/*box-shadow: inset 0px -5px 6px -3px rgba(0, 0, 0, 0.4)*/
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: bold 16px sans-serif;
+	color: rgb(235,235,235);
+	padding: 55px 50px;
+	margin-top: -26px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+	width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+	color:  #ffffff;
+	font: normal 36px 'Cookie', cursive;
+	margin: 0;
+}
+
+.footer-distributed h3 span{
+	color:  white;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+	color:  #ffffff;
+	margin: 20px 0 12px;
+	padding: 0;
+}
+
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-company-name{
+	color:  rgb(220,220,220);
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center{
+	width: 35%;
+}
+
+.footer-distributed .footer-center i{
+	background-color:  #795548;
+	color: #ffffff;
+	font-size: 25px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope{
+	font-size: 17px;
+	line-height: 38px;
+}
+
+.footer-distributed .footer-center p{
+	display: inline-block;
+	color: #ffffff;
+	vertical-align: middle;
+	margin:0;
+}
+
+.footer-distributed .footer-center p span{
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+	color: rgb(185,185,185); ;
+	text-decoration: none;;
+}
+
+
+/* Footer Right */
+
+.footer-distributed .footer-right{
+	width: 20%;
+}
+
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+	color:  rgb(220,220,220);
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+	display: block;
+	color:  #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+
+}
+
+/*.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #795548;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 3px;
+	margin-bottom: 5px;
+}*/
+.footer-distributed .footer-icons paper-fab{
+	display: inline-block;
+	cursor: pointer;
+
+	font-size: 18px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 25px;
+
+	margin-right: 4% !important;
+	margin-bottom: 8px;
+}
+.footer-distributed .footer-left span img{
+	width: 252px;
+}
+.footer-distributed .footer-icons a paper-fab:hover{
+
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+	.footer-distributed .footer-left span img{
+	width: 152px;
+}
+
+}
