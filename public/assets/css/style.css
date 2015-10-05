@@ -1,0 +1,380 @@
+.firstsection{
+	line-height: 6.5vh !important;
+}
+
+/*------------- CLASS -------------------*/
+.apartmenttable-container, .indiaparttable-container{
+	margin-top: 20px; 
+	background-color: #fff;
+	/*width: 89% !important;*/
+}
+
+.ownertable-container{
+	margin-top: 20px !important;
+	background-color: #fff !important;
+	width: 99% !important;
+}
+
+.updateapartment-container, .addapartment-container{
+	margin-top: 50px;
+	width: 60%;
+	background-color: #fff;
+}
+
+.updateapartment-container .row{
+	width: 80% !important;
+}
+
+.body{
+	display: block;
+	position: relative;
+	/*background-image: url('../../assets/images/paraimage1.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;*/
+	/*opacity: 0.4;*/
+	/*z-index: 9999 !important;*/
+
+	/*background-color: rgb(238,238,238);*/
+}
+.body::after{
+	content: "";
+	background-image: url('../../assets/images/paraimage1.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.7;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: -1;
+}
+
+.contact-banner{
+	font-weight: 500;
+	font-size: 35px;
+	font-family: "segoe ui";
+	margin-top: 20px;
+}
+
+.contact-outercontainer{
+	width: 70%;
+}
+
+.contact-container{
+	margin-top: 70px;
+	background-color: rgb(245,245,245) !important; ;
+	width: 80%;
+	padding: 50px;
+	border-radius: 4px;
+}
+
+.contact-links{
+	width: 28%;
+	position: absolute;
+	left: 64%;
+	top: 241px;
+	background-color: #f5f5f5;
+	/*border-left: 1px solid rgba(0,0,0,0.2);*/
+}
+
+.contact-link-content{
+	padding-left: 40px;
+	padding-bottom: 52px;
+}
+
+.contact-link-heading{
+	margin-top: 30px;
+}
+
+.contact-link-social{
+
+}
+
+.social-links{
+	margin: 10px;
+}
+
+.divcenter{
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.error-input{
+	color: red;
+	font-size: 12px;
+	text-align: center;
+}
+
+.footer{
+	font-size: 14px;
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+
+.hidden{
+	display: none;
+}
+
+.justify-align{
+	text-align: justify;
+}
+
+.loader-container{
+	width: 100%;
+	height: 680px;
+	z-index: 9999 !important;
+	background-color: rgb(220,220,220);
+}
+
+.login-container{
+	margin-top: 70px;
+	background-color: rgb(245,245,245) !important; ;
+	width: 46%;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	padding: 50px;
+	border-radius: 4px;
+}
+
+.register-banner{
+	font-weight: 500;
+	font-size: 24px;
+	font-family: "segoe ui";
+	margin-top: 20px;
+}
+
+.register-container{
+	margin-top: 50px;
+	background-color: rgb(249,249,249) !important; ;
+	width: 50%;
+	padding: 50px;
+	border-radius: 4px;
+	float: left;
+}
+
+#register-desc{
+	margin-right: 30px;
+	background-color: #eceff1 !important;
+	text-align: justify;
+}
+
+/*.material-icons{
+	font-size: 8rem !important;
+	margin-left: 27.3%;
+}*/
+
+.overlay{
+	background: rgba(70, 72, 82, 0.3);
+}
+.parallax-content-header{
+	font-size: 40px;
+	font-weight: 400;
+	font-family: "Segoe ui";
+}
+
+.parallax-content-title{
+	color: black;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	/*opacity: 0.5;*/
+	font-weight: 500;
+	font-size: 37px;
+	text-align: center;
+	margin-top: 150px;
+	height: 300px;
+	/*background-color: #fff;*/
+	border-radius: 4px;
+	font-family: "tekton pro";
+}
+
+
+.parallax-paragraph{
+	font-size: 16px !important;
+	text-align: justify;
+	font-weight: 300;
+	line-height: 5vh;
+}
+
+.row-title{
+	font-size: 24px;
+	text-align: center;
+	font-weight: 400;
+}
+
+.row .field{
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.table-title{
+	font-family: 'aharoni';
+}
+
+
+
+/* ----------------  overrides ------------------*/
+a .fa{
+	font-size: 17px;
+	margin-left: 12px;
+	margin-top: 10px;
+}
+
+#addapartment-modal, #addblock-modal{
+	max-height: 90% !important;
+	top:6.5% !important;
+}
+
+#addapartment-modal.modal-fixed-footer{
+	height: 88% !important;
+}
+#addindiapart-modal{
+	max-height: 100% !important;
+	top:0% !important;
+}
+
+#addindiapart-modal.modal-fixed-footer{
+	height: 100% !important;
+}
+
+#addowner-modal{
+	max-height: 100% !important;
+	top: 0% !important;
+}
+
+#addowner-modal.modal-fixed-footer{
+	height: 100%;
+}
+
+td .btn-flat{
+	padding:0 1rem !important;
+}
+
+td .btn{
+	padding: 0px .6rem !important;
+}
+
+td i.left{
+	margin-right: 7px !important;
+}
+
+.modal{
+	width: 48% !important;
+}
+
+.modal-content{
+	/*text-align: center !important;*/
+}
+
+.picker__frame {
+	max-width: 800px !important;
+	width: 450px !important;
+}
+
+.stop{
+	display: none !important;
+}
+
+.parallax-container {
+      height: 400px;
+ }
+
+.parallax img{
+	opacity: 0.8;
+}
+
+.preloader-wrapper.big {
+    width: 120px !important;
+    height: 120px !important;
+    position: absolute;
+	z-index: 999999 !important;
+	left: 46%;
+	top: 34%;
+}
+
+.section{
+	padding-top: 2rem !important;
+	padding-bottom: 2rem !important;
+	height: 100vh;
+}
+
+.spinner-teal-only{
+	border-color: #4db6ac;
+}
+
+@media only screen and (min-width : 333px) and (max-width: 724px) {
+  .container {
+    width: 90% !important;
+	}
+
+    .login-container{
+	width: 70%;
+	}
+
+	.register-container{
+		width: 70%;
+	}
+
+	.parallax-paragraph{
+		line-height: 3vh;
+		font-size: 15px !important;
+	}
+	.firstsection{
+		line-height: 4vh !important;
+		font-size: 15px !important;
+	}
+}
+@media only screen and (min-width : 725px) and (max-width: 853px) {
+  .container {
+    width: 90% !important;
+	}
+
+    .login-container{
+	width: 58%;
+	}
+
+	.register-container{
+		width: 58%;
+	}
+	.parallax-paragraph{
+		line-height: 3.3vh;
+		font-size: 15.4px !important;
+	}
+	.firstsection{
+		line-height: 4.3vh !important;
+	}
+}
+
+@media only screen and (min-width : 854px) and (max-width: 992px) {
+  .container {
+    width: 90% !important;
+	}
+
+    .login-container{
+	width: 58%;
+	}
+
+	.register-container{
+		width: 58%;
+	}
+	.parallax-paragraph{
+		line-height: 4vh;
+	}
+	.firstsection{
+		line-height: 5vh !important;
+	}
+}
+
+@media only screen and (min-width : 993px) {
+  .container {
+    width: 85% !important; }
+
+}
