@@ -1,0 +1,282 @@
+<?php $__env->startSection('htmlclass'); ?>
+<html>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+	Manage Apartment Details
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('nav-desktop'); ?>
+	<li><a href="<?php echo e(url('home')); ?>">Home</a></li>
+    <li><a href="<?php echo e(url('admin/manageowner')); ?>">Owners</a></li>
+    <li class="active"><a href="<?php echo e(url('admin/manageapartment')); ?>">Apartments</a></li>
+    <li><a href="<?php echo e(url('admin/manageblock')); ?>">Blocks</a></li>
+    <li><a href="<?php echo e(url('admin/manageindi')); ?>">Individual Apartments</a></li>
+    <li><a href="javascript:void(0)">Receipt</a></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('nav-mobile'); ?>
+	<li><a href="<?php echo e(url('home')); ?>">Home</a></li>
+    <li><a href="<?php echo e(url('admin/manageowner')); ?>">Owners</a></li>
+    <li class="active"><a href="<?php echo e(url('admin/manageapartment')); ?>">Apartments</a></li>
+    <li><a href="<?php echo e(url('admin/manageblock')); ?>">Blocks</a></li>
+    <li><a href="<?php echo e(url('admin/manageindi')); ?>">Individual Apartments</a></li>
+    <li><a href="javascript:void(0)">Receipt</a></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('bodyclass'); ?>
+	<body class="blue-grey lighten-5">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('body'); ?>
+	<div class="divcenter center-align table-title" style="font-size:36px;margin-top:30px;font-weight:500;">List of Apartments</div>
+	<div class="container apartmenttable-container divcenter">
+		<table class="highlight responsive-table centered">
+        <thead>
+            <tr>
+	            <th data-field="apartment_id">ID</th>
+	            <th data-field="apartment_name">Name</th>
+	            <th data-field="apartment_num_of_floors">Number of Floors</th>
+	            <th data-field="apartment_num_of_rooms">Number of rooms</th>
+	            <th data-field="apartment_construction_status">Construction Status</th>
+	            <th data-field="apartment_payment_status">Payment Status</th>
+	            <th data-field="created_at">Created At</th>
+	            <th data-field="updated_at">Updated At</th>
+	            <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+        
+        <?php foreach($apartments as $apartment): ?>
+            <tr>
+            <?php echo Form::open(['url'=>'/admin/updateapartment', 'id'=>"updateform$apartment->apartment_id"]); ?>
+
+	            <td width="80">
+	            	<span class="" id="id" data-aid="<?php echo e($apartment->apartment_id); ?>"><?php echo e($apartment->apartment_id); ?></span>
+	            </td>
+	            <td width="*">
+	            	<span class="data-label"><?php echo e($apartment->apartment_name); ?></span>
+	            	<?php echo Form::text('name', $apartment->apartment_name , ['class'=>'hidden center-align']); ?>
+
+	            </td>
+	            <td width="80">
+	            	<span class="data-label"><?php echo e($apartment->apartment_num_of_floors); ?></span>
+	            	<?php echo Form::text('num_of_floors', $apartment->apartment_num_of_floors , ['class'=>'hidden center-align']); ?>
+
+	            </td>
+	            <td width="80">
+	            	<span class="data-label"><?php echo e($apartment->apartment_num_of_rooms); ?></span>
+	            	<?php echo Form::text('num_of_rooms', $apartment->apartment_num_of_rooms , ['class'=>'hidden center-align']); ?>
+
+	            </td>
+	            <td width="80">
+	            	<span class="data-label"><?php echo e($apartment->apartment_construction_status); ?></span>
+	            	<?php echo Form::text('construction_status', $apartment->apartment_construction_status , ['class'=>'hidden center-align']); ?>
+
+	            </td>
+	            <td width="80">
+	            	<span class="data-label"><?php echo e($apartment->apartment_payment_status); ?></span>
+	            	<?php echo Form::text('payment_status', $apartment->apartment_payment_status , ['class'=>'hidden center-align']); ?>
+
+	            </td>
+	            <td width="180"><?php echo e($apartment->created_at->format('M j, Y')); ?></td>
+	            <td width="180"><?php echo e($apartment->updated_at->format('M j, Y')); ?></td>
+	            <td width="150" id="btn-options" class="">
+	            	<!-- href='<?php echo e(url("updateapartment/$apartment->apartment_id")); ?>' -->
+	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-teal grey-text text-darken-3 btn-flat edit-btn tooltipped" data-position="top" data-tooltip="Edit" name="<?php echo e($apartment->apartment_id); ?>"><i class="material-icons left" >edit</i></a>
+
+	            	<a href="javascript:void(0)" data-position="top"  data-tooltip="Delete" style="margin-top:10px;" class="waves-effect waves-teal grey-text text-darken-3 btn-flat deleteapartment-btn tooltipped" data-aid="<?php echo e($apartment->apartment_id); ?>"><i class="material-icons left" >delete</i></a>
+
+
+	            	<!-- Fot editing -->
+	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-green green-text btn-flat update-btn hidden tooltipped" name="<?php echo e($apartment->apartment_id); ?>" data-position="top" data-tooltip="Update"><i class="material-icons left">check</i></a>
+	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-red red-text btn-flat cancel-btn hidden tooltipped" name="<?php echo e($apartment->apartment_id); ?>" data-position="top" data-tooltip="Cancel"><i class="material-icons left">close</i></a>
+	            </td>
+	            <?php echo Form::close(); ?>
+
+            </tr>
+         <?php endforeach; ?>
+         
+        </tbody>
+      </table>
+	</div>
+
+
+	<!-- Modal Trigger -->
+	<center><a href="#addapartment-modal" style="margin-top:10px;" class="waves-effect waves-light btn" id="addapartment-btn"><i class="material-icons left">add</i>Add More Apartment</a></center>
+
+  <!--Add apartment Modal Structure -->
+  <div id="addapartment-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div class="container">
+		<?php echo Form::open(['url'=>'/admin/addapartment', 'id'=>'addform']); ?>
+
+		<div class="center-align" style="font-weight:500;font-size:32px;margin-bottom:40px !important;padding-top:20px;">Add an Apartment</div>
+
+		<div class="row field">
+			<div class="input-field col s12">
+			<i class="material-icons prefix">location_city</i>
+				<?php echo Form::label('name'); ?>
+
+				<?php echo Form::text('name', null); ?>
+
+				<div class="error-input">
+					<?php foreach($errors->get('name') as $message): ?>
+	              		<?php echo e($message); ?>
+
+	            	<?php endforeach; ?>			
+				</div>
+			</div>
+		</div>
+
+		<div class="row field">
+			<div class="input-field col s12">
+			<i class="material-icons prefix">grid_on</i>
+				<?php echo Form::label('num_of_floors'); ?>
+
+				<?php echo Form::text('num_of_floors', null); ?>
+
+				<div class="error-input">
+					<?php foreach($errors->get('num_of_floors') as $message): ?>
+	              		<?php echo e($message); ?>
+
+	            	<?php endforeach; ?>			
+				</div>
+			</div>
+		</div>
+
+		<div class="row field">
+			<div class="input-field col s12">
+			<i class="material-icons prefix">filter_1</i>
+				<?php echo Form::label('num_of_rooms'); ?>
+
+				<?php echo Form::text('num_of_rooms', null); ?>
+
+				<div class="error-input">
+					<?php foreach($errors->get('num_of_rooms') as $message): ?>
+	              		<?php echo e($message); ?>
+
+	            	<?php endforeach; ?>			
+				</div>
+			</div>
+		</div>
+
+		<div class="row field">
+			<div class="input-field col s12">
+			<i class="material-icons prefix">filter_1</i>
+				<?php echo Form::label('construction_status'); ?>
+
+				<?php echo Form::text('construction_status', null); ?>
+
+				<div class="error-input">
+					<?php foreach($errors->get('construction_status') as $message): ?>
+	              		<?php echo e($message); ?>
+
+	            	<?php endforeach; ?>			
+				</div>
+			</div>
+		</div>
+
+		<div class="row field">
+			<div class="input-field col s12">
+			<i class="material-icons prefix">filter_1</i>
+				<?php echo Form::label('payment_status'); ?>
+
+				<?php echo Form::text('payment_status', null); ?>
+
+				<div class="error-input">
+					<?php foreach($errors->get('payment_status') as $message): ?>
+	              		<?php echo e($message); ?>
+
+	            	<?php endforeach; ?>			
+				</div>
+			</div>
+		</div>
+
+		<?php echo Form::close(); ?>
+
+	</div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a href="javascript:void(0)" id="addapartment" class=" modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+    </div>
+  </div>
+
+
+  <!-- Delete Modal Structure -->
+    <div id="delete-modal" class="modal">
+	    <div class="modal-content">
+	       <h4>Confirm Delete</h4>
+	       <p>Are you sure you want to delete this Apartment?</p>
+	    </div>
+	    <div class="modal-footer">
+	       <a href="javascript:void(0)" id="cancel" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+	       <a href="link" id="yes" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+	    </div>
+    </div>
+    <?php if(!empty($errors->all())): ?>
+    <script type="text/javascript">
+   		 $('#addapartment-modal').openModal();
+    </script>
+	
+	<?php endif; ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('callback'); ?>
+	
+	//$('tr').hover(function(){
+	//	$(this).find('#btn-options').fadeIn();
+	//}).mouseleave(function(){
+	//	$(this).find('#btn-options').fadeOut();
+	//});
+
+	$('#addapartment-btn').click(function(){
+		$('#addapartment-modal').openModal();
+	});
+
+	$('#addapartment').click(function(){
+		$('#addform').submit();
+	});
+
+	$('.edit-btn').click(function(){
+		//var id = $('#deleteapartment-btn').attr('name');
+		//location.href="<?php echo e(URL::to('updateapartment')); ?>"+'/'+id;
+
+		$(this).parent().siblings('td').find('input').toggleClass('hidden');
+		$(this).parent().siblings('td').find('.data-label').toggleClass('hidden');
+		$(this).siblings('a.update-btn, a.cancel-btn, a.deleteapartment-btn').toggleClass('hidden');
+		$(this).toggleClass('hidden');
+		$(this).parent().parent().siblings('tr').find('a.cancel-btn:visible').click();
+	});
+
+	$('.cancel-btn').click(function(e){
+		e.preventDefault();
+
+		$(this).parent().siblings('td').find('input').toggleClass('hidden')
+			.each(function(i, e){
+				$(e).val($(e).siblings('span').text());
+			});
+		$(this).parent().siblings('td').find('.data-label').toggleClass('hidden');
+		$(this).siblings('a.update-btn, a.edit-btn, a.deleteapartment-btn').toggleClass('hidden');
+		$(this).toggleClass('hidden');
+	});
+
+
+	$('.deleteapartment-btn').click(function(){
+		var id = $(this).data('aid');
+		console.log(id);
+		$('#delete-modal').openModal();
+		$('.modal-footer #yes').attr('href', "<?php echo e(url('admin/deleteapartment')); ?>"+'/'+id);
+	});
+
+	$('.update-btn').click(function(){
+		var apart_id = $(this).parent().siblings('td').find('#id').data('aid');
+		var form = $(this).parent().parent().find('form');
+		console.log(form);
+		form.attr('action','<?php echo e(url("admin/updateapartment")); ?>'+'/'+apart_id);
+		form.submit();
+	});
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
