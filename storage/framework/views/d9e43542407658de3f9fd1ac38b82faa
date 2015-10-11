@@ -1,0 +1,71 @@
+<?php $__env->startSection('htmlclass'); ?>
+<html class="body">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+	Login to Apartriz!!
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('nav-desktop'); ?>
+	<li><a href="<?php echo e(url('home')); ?>">Home</a></li>
+    <li><a href="javascript:void()">Tenants</a></li>
+    <li><a href="javascipt:void()">Owners</a></li>
+    <li><a href="javascipt:void()">Services</a></li>
+    <li><a href="<?php echo e(url('contact')); ?>">Contact</a></li>
+    <li class="active"><a href="<?php echo e(url('auth/login')); ?>">Login</a></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('nav-mobile'); ?>
+	<li><a href="<?php echo e(url('home')); ?>">Home</a></li>
+    <li><a href="javascript:void()">Tenants</a></li>
+    <li><a href="javascipt:void()">Owners</a></li>
+    <li><a href="javascipt:void()">Services</a></li>
+    <li><a href="<?php echo e(url('contact')); ?>">Contact</a></li>
+    <li class="active"><a href="<?php echo e(url('auth/login')); ?>">Login</a></li>
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('bodyclass'); ?>
+	<body class="">
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('body'); ?>
+	<div class="container">
+		<!-- <div class="divcenter" style="width:60%;text-align:center;font-size:1.4rem;margin-top:20px;">Login to your account to use the systems full functionality!</div> -->
+		<div class="row z-depth-2 login-container">
+		<?php echo Form::open(['url'=>'/auth/login'], ['class'=>'col s12', 'id'=>'target']); ?>
+
+		<div class="center-align" style="font-weight:500;font-size:32px;margin-bottom:40px !important;">Apartriz Login</div>
+		<div class="row field">
+			<div class="input-field col s12">
+			<i class="material-icons prefix">account_circle</i>
+				<?php echo Form::label('username'); ?>
+
+				<?php echo Form::text('username', null); ?>			
+			</div>
+		</div>
+
+		<div class="row field">
+			<div class="input-field col s12">
+			<i class="material-icons prefix">lock</i>
+				<?php echo Form::label('password'); ?>
+
+				<?php echo Form::password('password', null); ?>			
+			</div>
+		</div>
+
+		<div class="row field">
+			<center><a href="javascript:void(0)" style="margin-top:10px;" class="waves-effect waves-light btn" id="login-btn"><i class="material-icons right">send</i>Login</a></center>
+		</div>
+
+		<?php echo Form::close(); ?>
+
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('callback'); ?>
+	$('#login-btn').click(function(){
+		$('form').submit();
+	});
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
