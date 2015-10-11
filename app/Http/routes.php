@@ -27,6 +27,8 @@ Route::get('/contact', function(){
 	return view('pages.contact');
 });
 
+Route::get('/admin/dashboard', 'AdminController@index');
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -45,6 +47,12 @@ Route::post('/admin/addblock', 'BlockController@store');
 Route::post('/admin/updateblock/{id}', 'BlockController@update');
 Route::get('/admin/deleteblock/{id}', ['uses'=>'BlockController@destroy']);
 
+// Manage Allotment
+Route::get('/admin/manageallotment', 'ApartmentAllotmentController@show');
+Route::post('/admin/addallotment', 'ApartmentAllotmentController@store');
+Route::post('/admin/updateallotment/{id}', 'ApartmentAllotmentController@update');
+Route::get('/admin/deleteallotment/{id}', ['uses'=>'ApartmentAllotmentController@destroy']);
+
 
 // Manage Individual Apartment
 Route::get('/admin/manageindi', 'IndividualApartmentController@show');
@@ -57,6 +65,12 @@ Route::get('/admin/manageowner', 'OwnerController@show');
 Route::post('/admin/addowner', 'OwnerController@store');
 Route::post('/admin/updateowner/{id}', 'OwnerController@update');
 Route::get('/admin/deleteowner/{id}', ['uses'=>'OwnerController@destroy']);
+
+//Manage Receipts
+Route::get('/admin/managereceipt', 'ReceiptController@show');
+Route::post('/admin/addreceipt', 'ReceiptController@store');
+Route::post('/admin/updatereceipt/{id}', 'ReceiptController@update');
+Route::get('/admin/deletereceipt/{id}', ['uses'=>'ReceiptController@destroy']);
 
 Route::get('/seed', function(){
 	DB::table('admin')->delete();

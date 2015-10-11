@@ -6,6 +6,7 @@ use Request;
 use Validator;
 use Redirect;
 use App\Apartment;
+use App\Block;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -68,6 +69,7 @@ class ApartmentController extends Controller
             $apartment->apartment_num_of_rooms          = $data['num_of_rooms'];
             $apartment->apartment_construction_status   = $data['construction_status'];
             $apartment->apartment_payment_status        = $data['payment_status'];
+            $apartment->block_id                        = $data['block_id'];
             $apartment->save();
             return Redirect::to('/admin/manageapartment');
             
@@ -87,8 +89,14 @@ class ApartmentController extends Controller
      */
     public function show()
     {
-        $data = Apartment::all();
-        return view('admin.manageapartment')->with('apartments', $data);
+        $apartments = Apartment::all();
+        $blocks = Block::all();
+
+        foreach ($blocks as $data) {
+            $block[$data->block_id] = $data->block_address;
+        }
+
+        return view('admin.manageapartment')->with('apartments', $apartments)->with('blocks', $block);
     }
 
     /**
@@ -121,6 +129,7 @@ class ApartmentController extends Controller
         $apartment->apartment_num_of_rooms          = $data['num_of_rooms'];
         $apartment->apartment_construction_status   = $data['construction_status'];
         $apartment->apartment_payment_status        = $data['payment_status'];
+        $apartment->block_id                        = $data['block_id'];
 
         $apartment->save();
 

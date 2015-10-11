@@ -65,9 +65,9 @@ class IndividualApartmentController extends Controller
         if ($validation->passes()) {
             $ia = new IndividualApartment;
 
-            $ia->owner_id   = $data['owner_id'];
-            $ia->apartment_id       = $data['apartment_id'];
-            $ia->aa_id   = $data['aa_id'];
+            $ia->owner_id       = $data['owner_id'];
+            $ia->apartment_id   = $data['apartment_id'];
+            $ia->aa_id          = $data['aa_id'];
 
             $ia->save();
             return Redirect::to('/admin/manageindi');
@@ -88,27 +88,23 @@ class IndividualApartmentController extends Controller
     public function show()
     {
         $apartments = Apartment::all();
-        $aa = ApartmentAllotment::all(); 
+        $aas = ApartmentAllotment::all(); 
         $owners = Owner::all();
-        $ia = IndividualApartment::all();
+        $ias = IndividualApartment::all();
 
         foreach($apartments as $data) {
-            $apartment["$data->apartment_id"] = $data->apartment_id;
+            $apartment[$data->apartment_id] = $data->apartment_name;
         }
 
-        foreach($aa as $data) {
-            $apartmentallotment["$data->aa_id"] = $data->aa_id;
+        foreach($aas as $data) {
+            $aa[$data->aa_id] = $data->aa_id;
         }
 
         foreach($owners as $data) {
-            $owner["$data->owner_id"] = $data->owner_firstname.' '.$data->owner_middlename.' '.$data->owner_lastname;
+            $owner[$data->owner_id] = $data->owner_firstname.' '.$data->owner_middlename.' '.$data->owner_lastname;
         }
 
-        array_unshift($apartment, [''=>'Apartment ID']);
-        array_unshift($apartmentallotment, [''=>'ApartmentAllotment ID']);
-        array_unshift($owner, [''=> 'Owner ID']);
-
-        return view('admin.manageindividualapartment')->with('ias', $apartmentallotment)->with('owners', $owner)->with('apartments', $apartment);
+        return view('admin.manageindividualapartment')->with('ias', $ias)->with('owners', $owner)->with('apartments', $apartment)->with('aas', $aa);
     }
 
     /**

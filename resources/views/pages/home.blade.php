@@ -31,8 +31,43 @@
 @stop
 
 @section('body')
-	<div class="parallax-container">
-      <div class="parallax overlay"><img src="../assets/images/paraimage1.jpg"></div>
+	
+      <!-- <div class="parallax overlay"><img src="../assets/images/paraimage1.jpg"></div> -->
+
+    <div class="slider">
+	    <ul class="slides">
+	        <li>
+	        <img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
+	        <div class="caption center-align">
+	            <h3>This is our big Tagline!</h3>
+	            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+	        </div>
+	        </li>
+	        <li>
+	        <img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
+	        <div class="caption left-align">
+	            <h3>Left Aligned Caption</h3>
+	            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+	        </div>
+	        </li>
+	        <li>
+	        <img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->
+	        <div class="caption right-align">
+	            <h3>Right Aligned Caption</h3>
+	            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+	        </div>
+	        </li>
+	        <li>
+	        <img src="http://lorempixel.com/580/250/nature/4"> <!-- random image -->
+	        <div class="caption center-align">
+	            <h3>This is our big Tagline!</h3>
+	            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+	        </div>
+	        </li>
+	    </ul>
+    </div>
+
+<div class="parallax-container">
       <div class="parallax-content-title"><p style="font-weight:600;z-index:99999;display:none;color:#fff;padding-top:20px;">JUST LIVE.</p></div>
     </div>
     <div class="section white">
@@ -100,4 +135,11 @@
 	    	</div>
 	    </div>
 	</div>
+@stop
+
+@section('callback')
+	$('.slider').slider({
+	    full_width: true,
+	    height: 550,
+  });
 @stop

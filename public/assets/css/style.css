@@ -3,17 +3,19 @@
 }
 
 /*------------- CLASS -------------------*/
-.apartmenttable-container, .indiaparttable-container{
-	margin-top: 20px; 
+.apartmenttable-container, .iatable-container{
+	margin-top: 3px; 
 	background-color: #fff;
 	/*width: 89% !important;*/
+	width: 100%;
 }
 
 .ownertable-container{
-	margin-top: 20px !important;
+	margin-top:3px%;
 	background-color: #fff !important;
-	width: 99% !important;
+	width: 100%;
 }
+
 
 .updateapartment-container, .addapartment-container{
 	margin-top: 50px;
@@ -126,6 +128,66 @@
 	text-align: justify;
 }
 
+.new_entries{
+	width: 45%;
+	float: left;
+	margin: 3% 0 3% 3.2%;
+	padding: 10px 10px 0 10px;
+	background-color: #fff;
+	max-height: 303px;
+	overflow: auto;
+}
+
+.clearfix:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.latest_receipts{
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #fff;
+	max-height: 303px;
+	padding: 10px 10px 0 10px;
+	overflow: auto;
+}
+
+.new_entries .table-heading , .latest_receipts .table-heading-onecolumn{
+	font-family: "aharoni";
+	font-size: 17px;
+	padding: 4px 0 10px 0;
+	text-transform: uppercase;
+	width: 32%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.latest_receipts .table-heading-onecolumn{
+	width: 20%;
+}
+
+.new_entries table, .latest_receipts table{
+	border-top: 1px solid #d0d0d0;
+}
+
+.new_entries table tr:last-child - tr:last-child{
+	border-bottom: none;
+}
+
+.new_entries table tr td, .latest_receipts table tr td, .ownertable-container table tr td, .apartmenttable-container table tr td, .iatable-container table tr td{
+	font-size: 13px;
+	font-family: "raleway medium";
+}
+
+.new_entries table tr th,.latest_receipts table tr th, .ownertable-container table tr th, .apartmenttable-container table tr th, .iatable-container table tr th{
+	font-size: 15px;
+	font-family: "raleway extrabold";
+}
+
 .loader-container{
 	width: 100%;
 	height: 680px;
@@ -216,7 +278,16 @@
 }
 
 .table-title{
-	font-family: 'aharoni';
+	font-family: 'raleway extrabold';
+	font-size: 25px !important;
+	margin:0!important;
+	background-color: rgb(246,246,246);
+	position: relative;
+}
+
+.table-title p{
+	margin: 0;
+	padding: 6px 0;	
 }
 
 

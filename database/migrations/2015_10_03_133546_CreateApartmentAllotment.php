@@ -14,8 +14,10 @@ class CreateApartmentAllotment extends Migration
     {
         Schema::create('apartmentallotments', function (Blueprint $table) {
             $table->increments('aa_id');
-            $table->string('aa_budget');
-            $table->string('ir_no');
+            $table->integer('apartment_id');
+            $table->integer('aa_amount_needed');
+            $table->integer('aa_amount_paid');
+            $table->integer('ir_no');
             $table->timestamps();
         });
     }

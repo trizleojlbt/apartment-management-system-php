@@ -9,30 +9,32 @@
 @stop
 
 @section('nav-desktop')
-	<li><a href="{{ url('home') }}">Home</a></li>
+	<li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
     <li><a href="{{ url('admin/manageowner') }}">Owners</a></li>
     <li><a href="{{ url('admin/manageapartment') }}">Apartments</a></li>
     <li class="active"><a href="{{ url('admin/manageblock') }}">Blocks</a></li>
     <li><a href="{{ url('admin/manageindi') }}">Individual Apartments</a></li>
-    <li><a href="javascript:void(0)">Receipt</a></li>
+    <li><a href="{{ url('admin/manageallotment') }}">Apartment Allotment</a></li>
+    <li><a href="javascript:void(0)">Receipts</a></li>
 @stop
 
 @section('nav-mobile')
-	<li><a href="{{ url('home') }}">Home</a></li>
+	<li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
     <li><a href="{{ url('admin/manageowner') }}">Owners</a></li>
     <li><a href="{{ url('admin/manageapartment') }}">Apartments</a></li>
     <li class="active"><a href="{{ url('admin/manageblock') }}">Blocks</a></li>
     <li><a href="{{ url('admin/manageindi') }}">Individual Apartments</a></li>
-    <li><a href="javascript:void(0)">Receipt</a></li>
+    <li><a href="{{ url('admin/manageallotment') }}">Apartment Allotment</a></li>
+    <li><a href="javascript:void(0)">Receipts</a></li>
 @stop
 
 @section('bodyclass')
-	<body class="blue-grey lighten-5">
+	<body >
 @stop
 
 @section('body')
-	<div class="divcenter center-align table-title" style="font-size:36px;margin-top:30px;font-weight:500;">List of Blocks</div>
-	<div class="container apartmenttable-container divcenter">
+	<div class="divcenter center-align table-title z-depth-1" style="font-size:36px;margin-top:30px;font-weight:500;"><p>List of Blocks</p></div>
+	<div class="apartmenttable-container divcenter">
 		<table class="highlight responsive-table centered">
         <thead>
             <tr>
@@ -84,14 +86,14 @@
 
 
 	<!-- Modal Trigger -->
-	<center><a href="#addblock-modal" style="margin-top:10px;" class="waves-effect waves-light btn" id="addblock-btn"><i class="material-icons left">add</i>Add More Block</a></center>
+	<center><a href="#addblock-modal" style="margin-top:10px;" class="waves-effect waves-light light-blue btn" id="addblock-btn"><i class="material-icons left">add</i>Add More Block</a></center>
 
   <!--Add apartment Modal Structure -->
   <div id="addblock-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
       <div class="container">
 		{!! Form::open(['url'=>'/admin/addblock', 'id'=>'addform']) !!}
-		<div class="center-align" style="font-weight:500;font-size:32px;margin-bottom:40px !important;padding-top:20px;">Add an Block</div>
+		<div class="center-align" style="font-weight:500;font-size:32px;margin-bottom:40px !important;padding-top:20px;">Add a Block</div>
 
 		<div class="row field">
 			<div class="input-field col s12">

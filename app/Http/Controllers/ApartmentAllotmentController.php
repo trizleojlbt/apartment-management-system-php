@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
+use Redirect;
+use Validator;
+use App\Apartment;
+use App\ApartmentAllotment;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -36,7 +40,40 @@ class ApartmentAllotmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Request::all();
+
+        $rules = [
+            'amount_needed'           => 'required|numeric',
+            'amount_paid'        => 'required|numeric',
+            'ir_no'                   => 'required|numeric'
+        ];
+
+        $messages = [
+            'amount_needed.required'            => 'Should not be empty.',
+            'amount_needed.numeric'             => 'Numbers only.',
+            'amount_paid.required'         => 'Should not be empty.',
+            'amount_paid.numeric'          => 'Numbers only.',
+            'ir_no.required'                    => 'Should not be empty.',
+            'ir_no.numeric'                     => 'Numbers only.'
+        ];
+
+        $validation = Validator::make($data, $rules, $messages);
+
+        if ($validation->passes()) {
+            $aa = new ApartmentAllotment;
+            $aa->apartment_id             = $data['apartment_id'];
+            $aa->aa_amount_needed         = $data['amount_needed'];
+            $aa->aa_amount_paid           = $data['amount_paid'];
+            $aa->ir_no                    = $data['ir_no'];
+
+            $aa->save();
+
+            return Redirect::to('/admin/manageallotment');
+            
+        } else {
+            return Redirect::back()->withInput()->withErrors($validation);
+        }
+        
     }
 
     /**
@@ -45,9 +82,18 @@ class ApartmentAllotmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $aa = ApartmentAllotment::all();
+        $apartments = Apartment::all();
+
+        foreach($apartments as $data) {
+            $apartment[$data->apartment_id] = $data->apartment_name;
+        }
+
+        // array_unshift($apartment, [''=>'Apartment']);
+
+        return view('admin.manageallotment')->with('aas', $aa )->with('apartments', $apartment);
     }
 
     /**
@@ -70,7 +116,21 @@ class ApartmentAllotmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Request::all();
+
+        var_dump($data);
+        win32_pause_service();
+
+        $aa =  ApartmentAllotment::find($id);
+
+        $aa->apartment_id             = $data['apartment_id'];
+        $aa->aa_amount_needed         = $data['amount_needed'];
+        $aa->aa_amount_paid           = $data['amount_paid'];
+        $aa->ir_no                    = $data['ir_no'];
+
+        $aa->save();
+
+        return Redirect::to('/admin/manageallotment');
     }
 
     /**
@@ -81,6 +141,10 @@ class ApartmentAllotmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ApartmentAllotment::destroy($id);
+
+        $data = ApartmentAllotment::all();
+
+        return Redirect::to('/admin/manageallotment')->with("aas", $data);
     }
 }

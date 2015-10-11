@@ -5,43 +5,46 @@
 @stop
 
 @section('title')
-	Manage Apartment Details
+	Manage Apartment
 @stop
 
 @section('nav-desktop')
-	<li><a href="{{ url('home') }}">Home</a></li>
+	<li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
     <li><a href="{{ url('admin/manageowner') }}">Owners</a></li>
     <li class="active"><a href="{{ url('admin/manageapartment') }}">Apartments</a></li>
     <li><a href="{{ url('admin/manageblock') }}">Blocks</a></li>
     <li><a href="{{ url('admin/manageindi') }}">Individual Apartments</a></li>
-    <li><a href="javascript:void(0)">Receipt</a></li>
+    <li><a href="{{ url('admin/manageallotment') }}">Apartment Allotment</a></li>
+    <li><a href="javascript:void(0)">Receipts</a></li>
 @stop
 
 @section('nav-mobile')
-	<li><a href="{{ url('home') }}">Home</a></li>
+	<li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
     <li><a href="{{ url('admin/manageowner') }}">Owners</a></li>
     <li class="active"><a href="{{ url('admin/manageapartment') }}">Apartments</a></li>
     <li><a href="{{ url('admin/manageblock') }}">Blocks</a></li>
     <li><a href="{{ url('admin/manageindi') }}">Individual Apartments</a></li>
-    <li><a href="javascript:void(0)">Receipt</a></li>
+    <li><a href="{{ url('admin/manageallotment') }}">Apartment Allotment</a></li>
+    <li><a href="javascript:void(0)">Receipts</a></li>
 @stop
 
 @section('bodyclass')
-	<body class="blue-grey lighten-5">
+	<body>
 @stop
 
 @section('body')
-	<div class="divcenter center-align table-title" style="font-size:36px;margin-top:30px;font-weight:500;">List of Apartments</div>
-	<div class="container apartmenttable-container divcenter">
+	<div class="divcenter center-align table-title z-depth-1" style="font-size:36px;margin-top:30px;font-weight:500;"><p>List of Apartments</p></div>
+	<div class="apartmenttable-container divcenter">
 		<table class="highlight responsive-table centered">
         <thead>
             <tr>
 	            <th data-field="apartment_id">ID</th>
 	            <th data-field="apartment_name">Name</th>
-	            <th data-field="apartment_num_of_floors">Number of Floors</th>
-	            <th data-field="apartment_num_of_rooms">Number of rooms</th>
+	            <th data-field="apartment_num_of_floors"># of Floors</th>
+	            <th data-field="apartment_num_of_rooms"># of rooms</th>
 	            <th data-field="apartment_construction_status">Construction Status</th>
 	            <th data-field="apartment_payment_status">Payment Status</th>
+	            <th data-field="block_address">Block Address</th>
 	            <th data-field="created_at">Created At</th>
 	            <th data-field="updated_at">Updated At</th>
 	            <th></th>
@@ -56,7 +59,7 @@
 	            <td width="80">
 	            	<span class="" id="id" data-aid="{{ $apartment->apartment_id }}">{{ $apartment->apartment_id }}</span>
 	            </td>
-	            <td width="*">
+	            <td width="200">
 	            	<span class="data-label">{{ $apartment->apartment_name }}</span>
 	            	{!! Form::text('name', $apartment->apartment_name , ['class'=>'hidden center-align']) !!}
 	            </td>
@@ -72,12 +75,16 @@
 	            	<span class="data-label">{{ $apartment->apartment_construction_status }}</span>
 	            	{!! Form::text('construction_status', $apartment->apartment_construction_status , ['class'=>'hidden center-align']) !!}
 	            </td>
-	            <td width="80">
+	            <td width="140">
 	            	<span class="data-label">{{ $apartment->apartment_payment_status }}</span>
 	            	{!! Form::text('payment_status', $apartment->apartment_payment_status , ['class'=>'hidden center-align']) !!}
 	            </td>
-	            <td width="180">{{ $apartment->created_at->format('M j, Y') }}</td>
-	            <td width="180">{{ $apartment->updated_at->format('M j, Y') }}</td>
+	            <td width="*">
+	            	<span class="data-label">{{ $apartment->getBlockAddress->block_address }}</span>
+	            	{!! Form::select('block_id', $blocks ,null, ['class'=>'hidden']) !!}
+	            </td>
+	            <td width="100">{{ $apartment->created_at->format('M j, Y') }}</td>
+	            <td width="100">{{ $apartment->updated_at->format('M j, Y') }}</td>
 	            <td width="150" id="btn-options" class="">
 	            	<!-- href='{{ url("updateapartment/$apartment->apartment_id") }}' -->
 	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-teal grey-text text-darken-3 btn-flat edit-btn tooltipped" data-position="top" data-tooltip="Edit" name="{{ $apartment->apartment_id }}"><i class="material-icons left" >edit</i></a>
@@ -99,7 +106,7 @@
 
 
 	<!-- Modal Trigger -->
-	<center><a href="#addapartment-modal" style="margin-top:10px;" class="waves-effect waves-light btn" id="addapartment-btn"><i class="material-icons left">add</i>Add More Apartment</a></center>
+	<center><a href="#addapartment-modal" style="margin-top:10px;" class="waves-effect waves-light light-blue btn" id="addapartment-btn"><i class="material-icons left">add</i>Add More Apartment</a></center>
 
   <!--Add apartment Modal Structure -->
   <div id="addapartment-modal" class="modal modal-fixed-footer">
@@ -173,6 +180,17 @@
 			</div>
 		</div>
 
+		<div class="row field">
+			<div class="input-field col s12">
+				{!! Form::select('block_id', $blocks) !!}
+				<div class="error-input">
+					@foreach($errors->get('block_id') as $message)
+	              		{{ $message }}
+	            	@endforeach			
+				</div>
+			</div>
+		</div>
+
 		{!! Form::close() !!}
 	</div>
     </div>
@@ -223,6 +241,11 @@
 		//location.href="{{ URL::to('updateapartment') }}"+'/'+id;
 
 		$(this).parent().siblings('td').find('input').toggleClass('hidden');
+
+		$(this).parent().siblings('td').find('div').toggleClass('hidden');
+		$(this).parent().siblings('td').find('select').removeClass('hidden');
+		$(this).parent().siblings('td').find('.select-dropdown').removeClass('hidden');
+
 		$(this).parent().siblings('td').find('.data-label').toggleClass('hidden');
 		$(this).siblings('a.update-btn, a.cancel-btn, a.deleteapartment-btn').toggleClass('hidden');
 		$(this).toggleClass('hidden');
@@ -233,6 +256,10 @@
 		e.preventDefault();
 
 		$(this).parent().siblings('td').find('input').toggleClass('hidden')
+			.each(function(i, e){
+				$(e).val($(e).siblings('span').text());
+			});
+		$(this).parent().siblings('td').find('div').toggleClass('hidden')
 			.each(function(i, e){
 				$(e).val($(e).siblings('span').text());
 			});

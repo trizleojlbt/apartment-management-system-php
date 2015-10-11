@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use Requests;
+use Redirect;
+use Validator;
+use App\Apartment;
+use App\IndividualApartment;
+use App\Owner;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
@@ -15,7 +20,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::all();
+        $owners = Owner::all();
+        return view('admin.dashboard')->with('apartments', $apartments)->with('owners', $owners);
     }
 
     /**

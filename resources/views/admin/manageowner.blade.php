@@ -9,29 +9,31 @@
 @stop
 
 @section('nav-desktop')
-    <li><a href="{{ url('home') }}">Home</a></li>
+    <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
     <li class="active"><a href="{{ url('admin/manageowner') }}">Owners</a></li>
     <li><a href="{{ url('admin/manageapartment') }}">Apartments</a></li>
     <li><a href="{{ url('admin/manageblock') }}">Blocks</a></li>
     <li><a href="{{ url('admin/manageindi') }}">Individual Apartments</a></li>
-    <li><a href="javascript:void(0)">Receipt</a></li>
+    <li><a href="{{ url('admin/manageallotment') }}">Apartment Allotment</a></li>
+    <li><a href="javascript:void(0)">Receipts</a></li>
 @stop
 
 @section('nav-mobile')
-    <li><a href="{{ url('home') }}">Home</a></li>
+    <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
     <li class="active"><a href="{{ url('admin/manageowner') }}">Owners</a></li>
     <li><a href="{{ url('admin/manageapartment') }}">Apartments</a></li>
     <li><a href="{{ url('admin/manageblock') }}">Blocks</a></li>
     <li><a href="{{ url('admin/manageindi') }}">Individual Apartments</a></li>
-    <li><a href="javascript:void(0)">Receipt</a></li>
+    <li><a href="{{ url('admin/manageallotment') }}">Apartment Allotment</a></li>
+    <li><a href="javascript:void(0)">Receipts</a></li>
 @stop
 
 @section('bodyclass')
-	<body class="blue-grey lighten-5">
+	<body>
 @stop
 
 @section('body')
-<div class="divcenter center-align table-title" style="font-size:36px;margin-top:30px;font-weight:500;">List of Owners</div>
+<div class="divcenter center-align table-title z-depth-1" style="font-size:36px;margin-top:30px;font-weight:500;"><p>List of Owners</p></div>
     <div class="ownertable-container divcenter">
         <table class="highlight responsive-table centered">
         <thead>
@@ -80,7 +82,7 @@
                     <span class="data-label">{{ $owner->owner_birthdate }}</span>
                     <input id="birthdate" value="{{ $owner->owner_birthdate }}" name="birthdate" type="date" class="datepicker hidden">       
                 </td>
-                <td width="500">
+                <td width="200">
                     <span class="data-label">{{ $owner->owner_address }}</span>
                     {!! Form::text('address', $owner->owner_address , ['class'=>'hidden center-align']) !!}
                 </td>
@@ -100,7 +102,7 @@
                     <span class="data-label">{{ $owner->owner_email }}</span>
                     {!! Form::text('email', $owner->owner_email , ['class'=>'hidden center-align']) !!}
                 </td>
-                <td width="150">
+                <td width="*">
 
                     <a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-teal grey-text text-darken-3 btn-flat edit-btn tooltipped" data-position="top" data-tooltip="Edit" name="{{ $owner->owner_id }}"><i class="material-icons left" >edit</i></a>
 
@@ -121,7 +123,7 @@
     </div>
 
         <!-- Modal Trigger -->
-    <center><a href="#addowner-modal" style="margin-top:10px;" class="waves-effect waves-light btn" id="addowner-btn"><i class="material-icons left">add</i>Add More owner</a></center>
+    <center><a href="#addowner-modal" style="margin-top:10px;" class="waves-effect waves-light light-blue btn" id="addowner-btn"><i class="material-icons left">add</i>Add More owner</a></center>
 
     <!--Add apartment Modal Structure -->
     <div id="addowner-modal" class="modal modal-fixed-footer">

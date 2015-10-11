@@ -9,38 +9,39 @@
 @stop
 
 @section('nav-desktop')
-	<li><a href="{{ url('home') }}">Home</a></li>
-    <li><a href="{{ url('admin/managetenant') }}">Tenants</a></li>
+	<li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
+    <li><a href="{{ url('admin/manageowner') }}">Owners</a></li>
     <li><a href="{{ url('admin/manageapartment') }}">Apartments</a></li>
+    <li><a href="{{ url('admin/manageblock') }}">Blocks</a></li>
     <li class="active"><a href="{{ url('admin/manageindi') }}">Individual Apartments</a></li>
-    <li><a href="javascript:void(0)">Receipt</a></li>
+    <li><a href="{{ url('admin/manageallotment') }}">Apartment Allotment</a></li>
+    <li><a href="javascript:void(0)">Receipts</a></li>
 @stop
 
 @section('nav-mobile')
-	<li><a href="{{ url('home') }}">Home</a></li>
-    <li><a href="{{ url('admin/managetenant') }}">Tenants</a></li>
+	<li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
+    <li><a href="{{ url('admin/manageowner') }}">Owners</a></li>
     <li><a href="{{ url('admin/manageapartment') }}">Apartments</a></li>
+    <li><a href="{{ url('admin/manageblock') }}">Blocks</a></li>
     <li class="active"><a href="{{ url('admin/manageindi') }}">Individual Apartments</a></li>
-    <li><a href="javascript:void(0)">Receipt</a></li>
+    <li><a href="{{ url('admin/manageallotment') }}">Apartment Allotment</a></li>
+    <li><a href="javascript:void(0)">Receipts</a></li>
 @stop
 
 @section('bodyclass')
-	<body class="blue-grey lighten-5">
+	<body>
 @stop
 
 @section('body')
-	<div class="divcenter center-align table-title" style="font-size:36px;margin-top:30px;font-weight:500;">List of Individual Apartments</div>
-	<div class="container indiaparttable-container divcenter">
+	<div class="divcenter center-align table-title z-depth-1" style="font-size:36px;margin-top:30px;font-weight:500;"><p>List of Individual Apartments</p></div>
+	<div class="iatable-container divcenter">
 		<table class="highlight responsive-table centered">
         <thead>
             <tr>
-	            <th data-field="indiapart_id">ID</th>
-	            <th data-field="indiapart_num_of_occupant">Number of Occupant</th>
-	            <th data-field="indiapart_date_rented">Date Rented</th>
-	            <th data-field="indiapart_payment_duedate">Due Date</th>
-	            <th data-field="indiapart_monthly_amount">Monthly Amount</th>
-	            <th data-field="apartment_id">Apartment ID</th>
-	            <th data-field="tenant_id">Tenant</th>
+	            <th data-field="ia_id">ID</th>
+	            <th data-field="owner_id">Owner</th>
+	            <th data-field="apartment_id">Apartment</th>
+	            <th data-field="aa_id">Allotment ID</th>
 	            <th data-field="created_at">Created At</th>
 	            <th data-field="updated_at">Updated At</th>
 	            <th></th>
@@ -48,49 +49,36 @@
         </thead>
 
         <tbody>
-        @foreach($indiapart as $indi)
+        @foreach($ias as $ia)
             <tr>
-        	{!! Form::open(['url'=>'/admin/updateindi', 'id'=>"updateform$indi->indiapart_id"]) !!}
+        	{!! Form::open(['url'=>'/admin/updateindi', 'id'=>"updateform$ia->ia_id"]) !!}
 	            <td width="60">
-	            	<span class="" id="id" data-aid="{{ $indi->indiapart_id }}">{{ $indi->indiapart_id }}</span>
+	            	<span class="" id="id" data-aid="{{ $ia->ia_id }}">{{ $ia->ia_id }}</span>
 	            </td>
-	            <td width="60">
-	            	<span class="data-label">{{ $indi->indiapart_num_of_occupant }}</span>
-	            	{!! Form::text('num_of_occupant', $indi->indiapart_num_of_occupant , ['class'=>'hidden center-align']) !!}
+	            <td width="180">
+	            	<span class="data-label">{{ $ia->getOwner->owner_lastname }}, {{ $ia->getOwner->owner_firstname }} <?php strtoupper($ia->getOwner->owner_lastname[0]); ?></span>
+	            	{!! Form::select('owner_id', $owners ,null, ['class'=>'hidden center-align']) !!}
 	            </td>
-	            <td width="80">
-	            	<span class="data-label">{{ $indi->indiapart_date_rented }}</span>
-	            	<input id="date_rented" value="{{ $indi->indiapart_date_rented }}" name="date_rented" type="date" class="datepicker hidden">
-	            </td>
-	            <td width="80">
-	            	<span class="data-label">{{ $indi->indiapart_payment_duedate }}</span>
-	            	<input id="duedate" value="{{ $indi->indiapart_payment_duedate }}" name="payment_duedate" type="date" class="datepicker hidden">
-	            </td>
-
-	            <td width="60">
-	            	<span class="data-label">{{ $indi->indiapart_monthly_amount }}</span>
-	            	{!! Form::text('monthly_amount', $indi->indiapart_monthly_amount , ['class'=>'hidden center-align']) !!}
+	            <td width="120">
+	            	<span class="data-label">{{ $ia->getApartment->apartment_name }}</span>
+	            	{!! Form::select('apartment_id', $apartments ,null, ['class'=>'hidden center-align']) !!}
 	            </td>
 	            <td width="60">
-	            	<span class="data-label">{{ $indi->apartment_id }}</span>
-	            	{!! Form::text('apartment_id', $indi->apartment_id , ['class'=>'hidden center-align']) !!}
+	            	<span class="data-label">{{ $ia->aa_id }}</span>
+	            	{!! Form::select('aa_id', $aas ,null, ['class'=>'hidden center-align']) !!}
 	            </td>
-	            <td width="100">
-	            	<span class="data-label">{{ $indi->tenant_id }}</span>
-	            	{!! Form::text('tenant_id', $indi->tenant_id , ['class'=>'hidden center-align']) !!}
-	            </td>
-	            <td width="180">{{ $indi->created_at->format('M j, Y') }}</td>
-	            <td width="180">{{ $indi->updated_at->format('M j, Y') }}</td>
+	            <td width="180">{{ $ia->created_at->format('M j, Y') }}</td>
+	            <td width="180">{{ $ia->updated_at->format('M j, Y') }}</td>
 	            <td width="150">
-	            	<!-- href='{{ url("updateapartment/$indi->apartment_id") }}' -->
-	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-teal grey-text text-darken-3 btn-flat edit-btn tooltipped" data-position="top" data-tooltip="Edit" name="{{ $indi->indiapart_id }}"><i class="material-icons left" >edit</i></a>
+	            	<!-- href='{{ url("updateapartment/$ia->apartment_id") }}' -->
+	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-teal grey-text text-darken-3 btn-flat edit-btn tooltipped" data-position="top" data-tooltip="Edit" name="{{ $ia->ia_id }}"><i class="material-icons left" >edit</i></a>
 
-	            	<a href="javascript:void(0)" data-position="top"  data-tooltip="Delete" style="margin-top:10px;" class="waves-effect waves-teal grey-text text-darken-3 btn-flat deleteindiapart-btn tooltipped" data-aid="{{ $indi->indiapart_id }}"><i class="material-icons left" >delete</i></a>
+	            	<a href="javascript:void(0)" data-position="top"  data-tooltip="Delete" style="margin-top:10px;" class="waves-effect waves-teal grey-text text-darken-3 btn-flat deleteia-btn tooltipped" data-aid="{{ $ia->ia_id }}"><i class="material-icons left" >delete</i></a>
 
 
 	            	<!-- Fot editing -->
-	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-green green-text btn-flat update-btn hidden tooltipped" name="{{ $indi->indiapart_id }}" data-position="top" data-tooltip="Update"><i class="material-icons left">check</i></a>
-	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-red red-text btn-flat cancel-btn hidden tooltipped" name="{{ $indi->indiapart_id }}" data-position="top" data-tooltip="Cancel"><i class="material-icons left">close</i></a>
+	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-green green-text btn-flat update-btn hidden tooltipped" name="{{ $ia->ia_id }}" data-position="top" data-tooltip="Update"><i class="material-icons left">check</i></a>
+	            	<a href='javascript:void(0)'  style="margin-top:10px;" class="waves-effect waves-red red-text btn-flat cancel-btn hidden tooltipped" name="{{ $ia->ia_id }}" data-position="top" data-tooltip="Cancel"><i class="material-icons left">close</i></a>
 	            </td>
          	{!! Form::close() !!}
             </tr>
@@ -101,10 +89,10 @@
 
 
 	<!-- Modal Trigger -->
-	<center><a href="#addindiapart-modal" style="margin-top:10px;" class="waves-effect waves-light btn" id="addindiapart-btn"><i class="material-icons left">add</i>Add More Individual Apartment</a></center>
+	<center><a href="#addia-modal" style="margin-top:10px;" class="waves-effect waves-light light-blue btn" id="addia-btn"><i class="material-icons left">add</i>Add More Individual Apartment</a></center>
 
   <!--Add apartment Modal Structure -->
-  <div id="addindiapart-modal" class="modal modal-fixed-footer">
+  <div id="addia-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
       <div class="container">
 		{!! Form::open(['url'=>'/admin/addindi', 'id'=>'addform']) !!}
@@ -112,11 +100,10 @@
 
 		<div class="row field">
 			<div class="input-field col s12">
-			<i class="material-icons prefix">vpn_key</i>
-				{!! Form::label('id') !!}
-				{!! Form::text('id', null ) !!}
+				{!! Form::label('owner_id') !!}
+				{!! Form::select('owner_id', $owners ) !!}
 				<div class="error-input">
-					@foreach($errors->get('id') as $message)
+					@foreach($errors->get('owner_id') as $message)
 	              		{{ $message }}
 	            	@endforeach			
 				</div>			
@@ -125,74 +112,22 @@
 
 		<div class="row field">
 			<div class="input-field col s12">
-			<i class="material-icons prefix">filter_1</i>
-				{!! Form::label('num_of_occupant') !!}
-				{!! Form::text('num_of_occupant', null) !!}
-				<div class="error-input">
-					@foreach($errors->get('num_of_occupant') as $message)
-	              		{{ $message }}
-	            	@endforeach			
-				</div>			
-			</div>
-		</div>
-
-		<div class="row field">
-			<div class="input-field col s12">
-			<i class="material-icons prefix">today</i>
-					<label for="date_rented">Date Rented</label>
-					<input id="date_rented" name="date_rented" type="date" class="datepicker">
-					<div class="error-input">
-					@foreach($errors->get('date_rented') as $message)
-	              		{{ $message }}
-	            	@endforeach			
-				</div>
-			</div>
-		</div>
-
-		<div class="row field">
-			<div class="input-field col s12">
-			<i class="material-icons prefix">today</i>
-					<label for="duedate">Due Date</label>
-					<input id="duedate" name="payment_duedate" type="date" class="datepicker">
-					<div class="error-input">
-					@foreach($errors->get('payment_duedate') as $message)
-	              		{{ $message }}
-	            	@endforeach			
-				</div>
-			</div>
-		</div>
-
-		<div class="row field">
-			<div class="input-field col s12">
-			<i class="material-icons prefix">local_atm</i>
-				{!! Form::label('monthly_amount') !!}
-				{!! Form::text('monthly_amount', null) !!}
-				<div class="error-input">
-					@foreach($errors->get('monthly_amount') as $message)
-	              		{{ $message }}
-	            	@endforeach			
-				</div>			
-			</div>
-		</div>
-
-		<div class="row field">
-			<div class="input-field col s12">
-			<!-- <i class="material-icons prefix">location_city</i> -->
-				{!! Form::select('apartment_id', $apartment, ['class'=>'browser-default']) !!}
+				{!! Form::label('apartment_id') !!}
+				{!! Form::select('apartment_id', $apartments ) !!}
 				<div class="error-input">
 					@foreach($errors->get('apartment_id') as $message)
 	              		{{ $message }}
 	            	@endforeach			
-				</div>
+				</div>			
 			</div>
 		</div>
 
 		<div class="row field">
 			<div class="input-field col s12">
-			<!-- <i class="material-icons prefix">account_circle</i> -->
-				{!! Form::select('tenant_id', $tenant, ['class'=>'browser-default']) !!}
+				{!! Form::label('aa_id') !!}
+				{!! Form::select('aa_id', $aas ) !!}
 				<div class="error-input">
-					@foreach($errors->get('tenant_id') as $message)
+					@foreach($errors->get('aa_id') as $message)
 	              		{{ $message }}
 	            	@endforeach			
 				</div>			
@@ -204,7 +139,7 @@
     </div>
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a href="javascript:void(0)" id="addindiapart" class=" modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+      <a href="javascript:void(0)" id="addia" class=" modal-action modal-close waves-effect waves-green btn-flat">Add</a>
     </div>
   </div>
 
@@ -221,7 +156,7 @@
 	    </div>
 	    @if(!empty($errors->all()))
 		    <script type="text/javascript">
-		   		 $('#addindiapart-modal').openModal();
+		   		 $('#addia-modal').openModal();
 		    </script>
 		@endif
     </div>
@@ -244,21 +179,22 @@
 	  	selectMonths: true
 	});
 
-	$('#addindiapart-btn').click(function(){
-		$('#addindiapart-modal').openModal();
+	$('#addia-btn').click(function(){
+		$('#addia-modal').openModal();
 	});
 
-	$('#addindiapart').click(function(){
+	$('#addia').click(function(){
 		$('#addform').submit();
 	});
 
 	$('.edit-btn').click(function(){
-		//var id = $('#deleteindiapart-btn').attr('name');
+		//var id = $('#deleteia-btn').attr('name');
 		//location.href="{{ URL::to('updateapartment') }}"+'/'+id;
 
 		$(this).parent().siblings('td').find('input').toggleClass('hidden');
+		$(this).parent().siblings('td').find('div').toggleClass('hidden');
 		$(this).parent().siblings('td').find('.data-label').toggleClass('hidden');
-		$(this).siblings('a.update-btn, a.cancel-btn, a.deleteindiapart-btn').toggleClass('hidden');
+		$(this).siblings('a.update-btn, a.cancel-btn, a.deleteia-btn').toggleClass('hidden');
 		$(this).toggleClass('hidden');
 		$(this).parent().parent().siblings('tr').find('a.cancel-btn:visible').click();
 	});
@@ -270,13 +206,18 @@
 			.each(function(i, e){
 				$(e).val($(e).siblings('span').text());
 			});
+		$(this).parent().siblings('td').find('div').toggleClass('hidden')
+			.each(function(i, e){
+				$(e).val($(e).siblings('span').text());
+			});
+
 		$(this).parent().siblings('td').find('.data-label').toggleClass('hidden');
-		$(this).siblings('a.update-btn, a.edit-btn, a.deleteindiapart-btn').toggleClass('hidden');
+		$(this).siblings('a.update-btn, a.edit-btn, a.deleteia-btn').toggleClass('hidden');
 		$(this).toggleClass('hidden');
 	});
 
 
-	$('.deleteindiapart-btn').click(function(){
+	$('.deleteia-btn').click(function(){
 		var id = $(this).data('aid');
 		console.log(id);
 		$('#delete-modal').openModal();

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Request;
-use Validator;
 use Redirect;
-use App\InstallmentReceipt;
+use Validator;
+use App\Receipt;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class InstallmentReceiptController extends Controller
+class ReceiptController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,18 +39,7 @@ class InstallmentReceiptController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Request::all();
-
-
-            $ir = new InstallmentReceipt;
-            $ir->ir_no                  = $data['no'];
-            $ir->ir_paymentmethod       = $data['paymentmethod'];
-            $ir->ir_paymentdate         = $data['paymentdate'];
-            $ir->ir_dateissued          = $data['dateissued'];
-
-            $ir->save();
-            return Redirect::to('/admin/managereceipt');
-
+        //
     }
 
     /**
@@ -61,8 +50,9 @@ class InstallmentReceiptController extends Controller
      */
     public function show()
     {
-        $data = InstallmentReceipt::all();
-        return view('admin.managereceipt')->with('receipts', $data)->with('type','installment');
+        $receipts = Receipt::all();
+
+        return view('admin.managereceipts')->with('receipts', $receipts);
     }
 
     /**
@@ -85,18 +75,7 @@ class InstallmentReceiptController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Request::all();
-
-        print_r($data);
-        $apartment =  InstallmentReceipt::find($id);
-
-        $ir->ir_paymentmethod       = $data['paymentmethod'];
-        $ir->ir_paymentdate         = $data['paymentdate'];
-        $ir->ir_dateissued          = $data['dateissued'];
-
-        $apartment->save();
-
-        return Redirect::to('/admin/manageapartment');
+        //
     }
 
     /**

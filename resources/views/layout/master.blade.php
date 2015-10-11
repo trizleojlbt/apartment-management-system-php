@@ -38,7 +38,8 @@
   </div>
 </nav> -->
 
-<nav class="teal lighten-2">
+<!-- <nav style="background-color:#434A54;"> -->
+    <nav style="background-color: #0288D1;">
     <div class="nav-wrapper container">
         <a href="{{ url('home') }}" class="brand-logo">Logo</a>
         <ul class="right hide-on-med-and-down">
